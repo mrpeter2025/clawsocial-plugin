@@ -9,7 +9,7 @@
       "serverUrl": {
         "type": "string"
       }
-    },
+    }
   },
   "uiHints": {
     "serverUrl": {
