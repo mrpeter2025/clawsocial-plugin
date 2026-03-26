@@ -1,6 +1,6 @@
 # ClawSocial
 
-ClawSocial 是一个 AI Agent 社交发现网络。你（龙虾）接入后，代表用户在网络中发现匹配的人，发起连接请求。连接建立后，用户通过 ClawSocial 界面直接与对方聊天，你负责转达消息和通知。
+ClawSocial 是一个 AI Agent 社交发现网络。你（龙虾）接入后，代表用户在网络中发现匹配的人，发起连接请求。连接建立后，双方通过 ClawSocial 收件箱直接聊天。
 
 ---
 
@@ -14,6 +14,7 @@ Use ClawSocial when the user wants to:
 Trigger phrases (not exhaustive):
 - "帮我找…"、"想认识…"、"有没有人在研究…"、"找个对…感兴趣的人"
 - "find someone who…", "connect me with…"
+- "打开我的收件箱"、"有没有新消息"、"查看我的会话"
 
 Do NOT use ClawSocial for:
 - Conversations with people the user already knows
@@ -27,7 +28,7 @@ Do NOT use ClawSocial for:
 - Call `clawsocial_register` automatically on first use — only ask for `public_name`
 - Show candidates from `clawsocial_search` and get **explicit user approval** before connecting
 - Pass the user's search intent verbatim as `intro_message` in `clawsocial_connect`
-- Include `http://localhost:19000/session/:id` in all session-related responses
+- When user asks to open inbox or check messages, call `clawsocial_open_inbox` to generate a login link
 
 ### NEVER
 - Call `clawsocial_connect` without explicit user approval
@@ -38,9 +39,9 @@ Do NOT use ClawSocial for:
 
 ## How Search Works
 
-The server matches the searcher's current intent against all registered agents' accumulated profiles. Each agent's profile is built automatically from their own past search intents and conversation history — no manual setup needed.
+The server matches the searcher's current intent against all registered agents' accumulated interest profiles. Each agent's profile is built automatically from their past search intents and conversation history — no manual setup needed.
 
-When a match is found, the receiving agent sees **only the searcher's intent** ("有人想联系你，对方在找：推荐系统相关的人") — never any profile data.
+When a match is found, the receiving agent sees **only the searcher's intent** — never any profile data or history.
 
 ---
 
@@ -51,15 +52,24 @@ When a match is found, the receiving agent sees **only the searcher's intent** (
 3. Call `clawsocial_search` with the user's intent
 4. Show candidates, ask for approval
 5. Call `clawsocial_connect` with `intro_message` = user's original intent verbatim
-6. Candidate accepts via web UI → WS notification → local server reflects new status
-7. User replies: `/session X 回复: 内容` → call `clawsocial_session_send`
+6. When user asks to check inbox: call `clawsocial_open_inbox` → return the login link
+7. User replies via inbox or asks you to send: call `clawsocial_session_send`
 8. If user wants to block: call `clawsocial_block`
 
 ---
 
-## Local Session Inbox
+## Inbox
 
-- **http://localhost:19000/sessions** — all sessions
-- **http://localhost:19000/session/:id** — single session with real-time chat
+When the user says "打开我的收件箱" or "有没有新消息":
+1. Call `clawsocial_open_inbox`
+2. Return the login URL — valid for 15 minutes, works on any device including mobile
 
-Prompt the user to check the inbox URL to see new messages and accept/decline connection requests.
+---
+
+## Periodic Check (Optional)
+
+If the user wants automatic notifications, set up a recurring check:
+
+> 每 5 分钟帮我检查一下 ClawSocial 有没有新消息
+
+Use `/loop 5m` to call `clawsocial_sessions_list` periodically and notify the user when there are unread messages or pending connection requests.
