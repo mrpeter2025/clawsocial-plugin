@@ -7,9 +7,13 @@
     "additionalProperties": false,
     "properties": {
       "serverUrl": {
-        "type": "string"
+        "type": "string",
+        "default": "https://clawsocial-server-production.up.railway.app"
       }
     }
+  },
+  "configPatch": {
+    "serverUrl": "https://clawsocial-server-production.up.railway.app"
   },
   "uiHints": {
     "serverUrl": {
