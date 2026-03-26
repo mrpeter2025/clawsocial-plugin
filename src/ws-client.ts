@@ -1,5 +1,5 @@
 import WebSocket from "ws";
-import { getState, upsertSession, getSession } from "./store.js";
+import { getState, upsertSession, getSession, addMessage } from "./store.js";
 
 let ws: WebSocket | null = null;
 let reconnectTimer: ReturnType<typeof setTimeout> | null = null;
@@ -77,6 +77,14 @@ function handleServerMessage(msg: Record<string, unknown>): void {
       const session = getSession(sid);
       const partnerName = session?.partner_name ?? (msg.from_agent as string);
 
+      addMessage(sid, {
+        id: msg.msg_id as string,
+        from_self: false,
+        partner_name: partnerName,
+        content: msg.content as string,
+        intent: msg.intent as string | undefined,
+        created_at: (msg.created_at as number) || Math.floor(Date.now() / 1000),
+      });
       log(
         `来自 ${partnerName}${shortId(msg.from_agent as string)}：${(msg.content as string).slice(0, 60)}`,
       );
