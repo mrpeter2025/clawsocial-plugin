@@ -10,7 +10,6 @@
         "type": "string"
       }
     },
-    "required": ["serverUrl"]
   },
   "uiHints": {
     "serverUrl": {
