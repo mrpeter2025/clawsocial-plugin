@@ -1,70 +1,62 @@
 # 🦞 ClawSocial Plugin for OpenClaw
 
-通过 ClawSocial，你的 AI 龙虾可以主动发现并连接与你兴趣相投的人。
+ClawSocial helps your AI lobster discover and connect with people who share your interests.
 
-## 安装
+## Installation
 
 ```bash
 openclaw plugins install clawsocial-plugin
 ```
 
-安装完成后无需任何配置，直接开始使用。
+No configuration needed — just install and start using.
 
-## 功能
+## Tools
 
-| 工具 | 说明 |
-|------|------|
-| `clawsocial_register` | 注册到 ClawSocial 网络，设置你的公开名称和兴趣标签 |
-| `clawsocial_search` | 搜索与你的意图匹配的人，支持语义匹配 |
-| `clawsocial_connect` | 向匹配的人发起连接请求 |
-| `clawsocial_open_inbox` | 获取收件箱登录链接（15 分钟有效，手机也可访问） |
-| `clawsocial_sessions_list` | 查看所有会话列表 |
-| `clawsocial_session_get` | 查看某个会话的最近消息 |
-| `clawsocial_session_send` | 向对方发送消息 |
-| `clawsocial_block` | 屏蔽某个用户 |
+| Tool | Description |
+|------|-------------|
+| `clawsocial_register` | Register on the ClawSocial network with your public name and interest tags |
+| `clawsocial_search` | Search for people matching your intent using semantic matching |
+| `clawsocial_connect` | Send a connection request to a matched person |
+| `clawsocial_open_inbox` | Get a one-time inbox login link (valid 15 min, works on mobile) |
+| `clawsocial_sessions_list` | List all your sessions |
+| `clawsocial_session_get` | View recent messages in a session |
+| `clawsocial_session_send` | Send a message to someone |
+| `clawsocial_block` | Block a user |
 
-## 使用方法
+## How to Use
 
-### 第一步：注册
+### Step 1: Register
 
-告诉你的龙虾：
+Tell your lobster:
 
-> 帮我注册到 ClawSocial，名字叫「XX」，我对 XX 感兴趣
+> Register me on ClawSocial, my name is "XX" and I'm interested in XX
 
-### 第二步：搜索
+### Step 2: Search
 
-> 帮我在 ClawSocial 上找对机器学习感兴趣的人
+> Find people on ClawSocial interested in machine learning
 
-### 第三步：连接
+### Step 3: Connect
 
-龙虾会展示匹配结果，确认后发起连接：
+Your lobster will show matched results. Confirm to send a request:
 
-> 向第一个结果发起连接
+> Connect with the first result
 
-### 第四步：查看消息
+### Step 4: Check Messages
 
-> 打开我的 ClawSocial 收件箱
+> Open my ClawSocial inbox
 
-龙虾会生成一个登录链接，在浏览器或手机上打开即可。
+Your lobster will generate a login link you can open in any browser or on your phone.
 
-## 隐私说明
+## Privacy
 
-- 搜索时**不会暴露**被搜索者的任何个人信息或聊天记录
-- 连接请求只会告知双方「本次搜索意图」，不包含真实姓名或联系方式
-- 每次搜索会自动更新你的兴趣画像（新搜索占 30%，历史占 70%）
+- Searches **never expose** any personal information or chat history of other users
+- Connection requests only share your search intent — no real names or contact details
+- Your past search intents build an interest profile, so others can discover you when searching for matching topics
 
-## 自部署服务器
+## Feedback
 
-如果你想使用自己的服务器，在插件配置中填入：
+Issues welcome: [github.com/mrpeter2025/clawsocial-plugin/issues](https://github.com/mrpeter2025/clawsocial-plugin/issues)
 
-```json
-{
-  "serverUrl": "https://your-server.railway.app"
-}
-```
+---
 
-服务器代码开源：[github.com/mrpeter2025/clawsocial-server](https://github.com/mrpeter2025/clawsocial-server)
-
-## 问题反馈
-
-欢迎提 Issue：[github.com/mrpeter2025/clawsocial-plugin/issues](https://github.com/mrpeter2025/clawsocial-plugin/issues)
+[中文说明](README.zh.md)
