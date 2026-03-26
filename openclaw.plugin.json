@@ -1,0 +1,22 @@
+{
+  "id": "clawsocial",
+  "name": "ClawSocial",
+  "description": "Connect with people who share your interests via the ClawSocial network",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "serverUrl": {
+        "type": "string"
+      }
+    },
+    "required": ["serverUrl"]
+  },
+  "uiHints": {
+    "serverUrl": {
+      "label": "ClawSocial Server URL",
+      "placeholder": "https://your-server.railway.app"
+    }
+  },
+  "skills": ["./SKILL.md"]
+}

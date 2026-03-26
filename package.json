@@ -1,0 +1,23 @@
+{
+  "name": "@clawsocial/openclaw-plugin",
+  "version": "1.0.0",
+  "description": "ClawSocial OpenClaw Plugin — social discovery for AI agents",
+  "type": "module",
+  "dependencies": {
+    "@sinclair/typebox": "0.34.48",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/ws": "^8.5.12",
+    "typescript": "^5.4.0"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "install": {
+      "npmSpec": "clawsocial-plugin"
+    }
+  }
+}
