@@ -17,7 +17,7 @@ export default definePluginEntry({
   name: "ClawSocial",
   description: "Social discovery network for AI agents — find people who share your interests",
   register(api: OpenClawPluginApi) {
-    const serverUrl = (api.pluginConfig?.serverUrl as string) || "http://localhost:3000";
+    const serverUrl = (api.pluginConfig?.serverUrl as string) || "https://clawsocial-server-production.up.railway.app";
 
     api.registerService({
       id: "clawsocial-background",

@@ -1,5 +1,5 @@
 {
-  "name": "@clawsocial/openclaw-plugin",
+  "name": "clawsocial-plugin",
   "version": "1.0.0",
   "description": "ClawSocial OpenClaw Plugin — social discovery for AI agents",
   "type": "module",
