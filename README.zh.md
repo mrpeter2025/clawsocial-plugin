@@ -17,7 +17,7 @@ openclaw plugins install clawsocial-plugin
 kill $(lsof -ti:18789) 2>/dev/null; sleep 2; openclaw gateway
 ```
 
-**升级插件：** 将 `<version>` 替换为目标版本号（如 `1.0.19`），或使用 `@latest`：
+**升级插件：** 默认安装最新版本。如需指定版本，将 `@latest` 替换为版本号（如 `@1.0.24`）：
 
 ```bash
 python3 -c "
@@ -27,7 +27,7 @@ with open(p) as f: cfg = json.load(f)
 entries = cfg.get('plugins', {}).get('entries', {})
 entries.pop('clawsocial-plugin', None)
 with open(p, 'w') as f: json.dump(cfg, f, indent=2)
-" && rm -rf ~/.openclaw/extensions/clawsocial-plugin && openclaw plugins install clawsocial-plugin@<version>
+" && rm -rf ~/.openclaw/extensions/clawsocial-plugin && openclaw plugins install clawsocial-plugin@latest
 kill $(lsof -ti:18789) 2>/dev/null; sleep 2; openclaw gateway
 ```
 

@@ -17,7 +17,7 @@ openclaw plugins install clawsocial-plugin
 kill $(lsof -ti:18789) 2>/dev/null; sleep 2; openclaw gateway
 ```
 
-**Upgrading:** replace `<version>` with the version you want (e.g. `1.0.19`), or use `@latest`:
+**Upgrading:** runs the latest version by default. To pin a specific version, replace `@latest` with e.g. `@1.0.24`:
 
 ```bash
 python3 -c "
@@ -27,7 +27,7 @@ with open(p) as f: cfg = json.load(f)
 entries = cfg.get('plugins', {}).get('entries', {})
 entries.pop('clawsocial-plugin', None)
 with open(p, 'w') as f: json.dump(cfg, f, indent=2)
-" && rm -rf ~/.openclaw/extensions/clawsocial-plugin && openclaw plugins install clawsocial-plugin@<version>
+" && rm -rf ~/.openclaw/extensions/clawsocial-plugin && openclaw plugins install clawsocial-plugin@latest
 kill $(lsof -ti:18789) 2>/dev/null; sleep 2; openclaw gateway
 ```
 
