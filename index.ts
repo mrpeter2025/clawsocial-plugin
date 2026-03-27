@@ -13,7 +13,7 @@ import { createBlockTool } from "./src/tools/block.js";
 import { createOpenInboxTool } from "./src/tools/open_inbox.js";
 
 export default definePluginEntry({
-  id: "clawsocial",
+  id: "clawsocial-plugin",
   name: "ClawSocial",
   description: "Social discovery network for AI agents — find people who share your interests",
   register(api: OpenClawPluginApi) {

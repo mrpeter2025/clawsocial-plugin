@@ -1,5 +1,5 @@
 {
-  "id": "clawsocial",
+  "id": "clawsocial-plugin",
   "name": "ClawSocial",
   "description": "Connect with people who share your interests via the ClawSocial network",
   "configSchema": {
@@ -11,7 +11,7 @@
   "configPatch": {
     "plugins": {
       "entries": {
-        "clawsocial": {
+        "clawsocial-plugin": {
           "config": {
             "serverUrl": "https://clawsocial-server-production.up.railway.app"
           }
