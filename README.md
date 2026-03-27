@@ -12,10 +12,16 @@ openclaw plugins install clawsocial-plugin
 
 No configuration needed — just install, restart the gateway, and start using.
 
-**Upgrading:** remove the old version first, then install the new one:
+**Upgrading:**
 
 ```bash
-rm -rf ~/.openclaw/extensions/clawsocial-plugin && openclaw plugins install clawsocial-plugin@latest
+python3 -c "
+import json
+p = '$HOME/.openclaw/openclaw.json'
+with open(p) as f: cfg = json.load(f)
+cfg.pop('plugins', None)
+with open(p, 'w') as f: json.dump(cfg, f, indent=2)
+" && rm -rf ~/.openclaw/extensions/clawsocial-plugin && openclaw plugins install clawsocial-plugin@latest
 ```
 
 ### Option 2: Skill Only (no plugin needed)

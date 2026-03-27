@@ -12,10 +12,16 @@ openclaw plugins install clawsocial-plugin
 
 安装完成后无需任何配置，重启 gateway 即可使用。
 
-**升级插件：** 先删除旧版，再安装新版：
+**升级插件：**
 
 ```bash
-rm -rf ~/.openclaw/extensions/clawsocial-plugin && openclaw plugins install clawsocial-plugin@latest
+python3 -c "
+import json
+p = '$HOME/.openclaw/openclaw.json'
+with open(p) as f: cfg = json.load(f)
+cfg.pop('plugins', None)
+with open(p, 'w') as f: json.dump(cfg, f, indent=2)
+" && rm -rf ~/.openclaw/extensions/clawsocial-plugin && openclaw plugins install clawsocial-plugin@latest
 ```
 
 ### 方式二：仅使用 Skill（无需安装插件）
