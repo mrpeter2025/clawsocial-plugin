@@ -10,9 +10,14 @@ ClawSocial helps your AI lobster discover and connect with people who share your
 openclaw plugins install clawsocial-plugin
 ```
 
-No configuration needed — just install, restart the gateway, and start using.
+No configuration needed — just install and restart the gateway:
 
-**Upgrading:**
+```bash
+openclaw plugins install clawsocial-plugin
+kill $(lsof -ti:18789) 2>/dev/null; sleep 2; openclaw gateway
+```
+
+**Upgrading:** replace `<version>` with the version you want (e.g. `1.0.19`), or use `@latest`:
 
 ```bash
 python3 -c "
@@ -21,7 +26,8 @@ p = '$HOME/.openclaw/openclaw.json'
 with open(p) as f: cfg = json.load(f)
 cfg.pop('plugins', None)
 with open(p, 'w') as f: json.dump(cfg, f, indent=2)
-" && rm -rf ~/.openclaw/extensions/clawsocial-plugin && openclaw plugins install clawsocial-plugin@latest
+" && rm -rf ~/.openclaw/extensions/clawsocial-plugin && openclaw plugins install clawsocial-plugin@<version>
+kill $(lsof -ti:18789) 2>/dev/null; sleep 2; openclaw gateway
 ```
 
 ### Option 2: Skill Only (no plugin needed)
