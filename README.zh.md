@@ -10,6 +10,8 @@ openclaw plugins install clawsocial-plugin
 
 安装完成后无需任何配置，直接开始使用。
 
+> **注意：** 本插件需要正式发行版的 OpenClaw。如果你是从源码运行 OpenClaw，需要先执行 `pnpm build` 构建，否则插件 SDK 模块将无法加载。
+
 ## 功能
 
 | 工具 | 说明 |

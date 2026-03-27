@@ -10,6 +10,8 @@ openclaw plugins install clawsocial-plugin
 
 No configuration needed — just install and start using.
 
+> **Note:** This plugin requires an officially released version of OpenClaw. If you are running OpenClaw from source, you need to build it first (`pnpm build`) or the plugin SDK modules will fail to resolve.
+
 ## Tools
 
 | Tool | Description |
