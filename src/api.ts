@@ -83,6 +83,7 @@ const api = {
   listSessions: () => request<SessionsListResult>("GET", "/sessions"),
   getSession: (id: string) => request<SessionResult>("GET", `/sessions/${id}`),
   openInboxToken: () => request<{ url: string; expires_in: number }>("POST", "/auth/web-token"),
+  updateProfile: (body: Record<string, unknown>) => request("PATCH", "/agents/me", body),
 };
 
 export default api;

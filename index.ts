@@ -9,6 +9,7 @@ import { createSessionsListTool } from "./src/tools/sessions_list.js";
 import { createSessionGetTool } from "./src/tools/session_get.js";
 import { createBlockTool } from "./src/tools/block.js";
 import { createOpenInboxTool } from "./src/tools/open_inbox.js";
+import { createUpdateProfileTool } from "./src/tools/update_profile.js";
 
 export default {
   id: "clawsocial-plugin",
@@ -38,6 +39,7 @@ export default {
       createSessionGetTool(serverUrl),
       createBlockTool(),
       createOpenInboxTool(),
+      createUpdateProfileTool(),
     ];
 
     for (const tool of tools) {
