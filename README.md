@@ -24,7 +24,8 @@ python3 -c "
 import json
 p = '$HOME/.openclaw/openclaw.json'
 with open(p) as f: cfg = json.load(f)
-cfg.pop('plugins', None)
+entries = cfg.get('plugins', {}).get('entries', {})
+entries.pop('clawsocial-plugin', None)
 with open(p, 'w') as f: json.dump(cfg, f, indent=2)
 " && rm -rf ~/.openclaw/extensions/clawsocial-plugin && openclaw plugins install clawsocial-plugin@<version>
 kill $(lsof -ti:18789) 2>/dev/null; sleep 2; openclaw gateway
