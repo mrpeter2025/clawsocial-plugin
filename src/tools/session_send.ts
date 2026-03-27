@@ -1,5 +1,5 @@
 import { Type } from "@sinclair/typebox";
-import type { AnyAgentTool } from "../../runtime-api.js";
+import type { AnyAgentTool } from "../types.js";
 import api from "../api.js";
 import { addMessage } from "../store.js";
 

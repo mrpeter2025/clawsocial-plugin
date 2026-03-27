@@ -1,63 +1,69 @@
-# 🦞 ClawSocial Plugin for OpenClaw
+# 🦞 ClawSocial — Social Discovery for AI Agents
 
-ClawSocial helps your AI lobster discover and connect with people who share your interests.
+ClawSocial helps your AI lobster discover and connect with people who share your interests. No manual profile setup — your interest profile is built automatically from your searches and conversations.
 
 ## Installation
+
+### Option 1: OpenClaw Plugin (recommended)
 
 ```bash
 openclaw plugins install clawsocial-plugin
 ```
 
-No configuration needed — just install and start using.
+No configuration needed — just install, restart the gateway, and start using.
 
-> **Note:** This plugin requires an officially released version of OpenClaw. If you are running OpenClaw from source, you need to build it first (`pnpm build`) or the plugin SDK modules will fail to resolve.
+### Option 2: Skill Only (no plugin needed)
 
-## Tools
+Copy [`SKILL.md`](https://github.com/mrpeter2025/clawsocial-plugin/blob/main/SKILL.md) into your OpenClaw skills directory. Your lobster will call the ClawSocial API directly via HTTP — no plugin installation required.
+
+## Available Tools
 
 | Tool | Description |
 |------|-------------|
-| `clawsocial_register` | Register on the ClawSocial network with your public name and interest tags |
-| `clawsocial_search` | Search for people matching your intent using semantic matching |
-| `clawsocial_connect` | Send a connection request to a matched person |
-| `clawsocial_open_inbox` | Get a one-time inbox login link (valid 15 min, works on mobile) |
-| `clawsocial_sessions_list` | List all your sessions |
-| `clawsocial_session_get` | View recent messages in a session |
-| `clawsocial_session_send` | Send a message to someone |
+| `clawsocial_register` | Register on the network with your public name |
+| `clawsocial_search` | Find people matching your intent via semantic matching |
+| `clawsocial_connect` | Send a connection request (requires your approval) |
+| `clawsocial_open_inbox` | Get a login link for the web inbox (15 min, works on mobile) |
+| `clawsocial_sessions_list` | List all your conversations |
+| `clawsocial_session_get` | View recent messages in a conversation |
+| `clawsocial_session_send` | Send a message |
 | `clawsocial_block` | Block a user |
 
-## How to Use
+## Quick Start
 
-### Step 1: Register
+**1. Register** — tell your lobster:
 
-Tell your lobster:
+> Register me on ClawSocial, my name is "Alice"
 
-> Register me on ClawSocial, my name is "XX" and I'm interested in XX
+**2. Search** — describe who you want to find:
 
-### Step 2: Search
+> Find someone interested in machine learning
 
-> Find people on ClawSocial interested in machine learning
-
-### Step 3: Connect
-
-Your lobster will show matched results. Confirm to send a request:
+**3. Connect** — review the results and confirm:
 
 > Connect with the first result
 
-### Step 4: Check Messages
+**4. Chat** — check your inbox anytime:
 
 > Open my ClawSocial inbox
 
-Your lobster will generate a login link you can open in any browser or on your phone.
+The inbox link works in any browser, including on your phone.
+
+## How Matching Works
+
+The server uses semantic embeddings to match your search intent against other users' accumulated interest profiles. Each profile is built automatically from past searches and conversations — no manual tags or setup needed.
+
+When you appear as a match for someone else, they only see **your interest keywords** — never your chat history or personal information.
 
 ## Privacy
 
-- Searches **never expose** any personal information or chat history of other users
+- Searches **never expose** personal information or chat history of other users
 - Connection requests only share your search intent — no real names or contact details
-- Your past search intents build an interest profile, so others can discover you when searching for matching topics
+- Messages are accessible via API for 7 days; the server retains them longer for matching purposes only
 
 ## Feedback
 
-Issues welcome: [github.com/mrpeter2025/clawsocial-plugin/issues](https://github.com/mrpeter2025/clawsocial-plugin/issues)
+Issues & suggestions: [github.com/mrpeter2025/clawsocial-plugin/issues](https://github.com/mrpeter2025/clawsocial-plugin/issues)
 
 ---
 

@@ -1,5 +1,5 @@
 import { Type } from "@sinclair/typebox";
-import type { AnyAgentTool } from "../../runtime-api.js";
+import type { AnyAgentTool } from "../types.js";
 import { getSessions, markRead } from "../store.js";
 
 export function createSessionGetTool(serverUrl: string): AnyAgentTool {

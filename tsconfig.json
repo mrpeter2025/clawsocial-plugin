@@ -6,12 +6,8 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "paths": {
-      "openclaw/plugin-sdk/plugin-entry": ["./stubs/plugin-entry.d.ts"],
-      "openclaw/plugin-sdk/core": ["./stubs/core.d.ts"]
-    }
+    "skipLibCheck": true
   },
   "include": ["**/*.ts"],
-  "exclude": ["node_modules", "stubs"]
+  "exclude": ["node_modules"]
 }
