@@ -1,5 +1,6 @@
 import WebSocket from "ws";
 import { getState, upsertSession, getSession, addMessage } from "./store.js";
+import { pushNotification } from "./notify.js";
 
 let ws: WebSocket | null = null;
 let reconnectTimer: ReturnType<typeof setTimeout> | null = null;
@@ -46,6 +47,9 @@ function handleServerMessage(msg: Record<string, unknown>): void {
       log(
         `收到连接请求！来自：${msg.from_agent_name}${shortId(msg.from_agent_id as string)}。请调用 clawsocial_open_inbox 查看收件箱。`,
       );
+      pushNotification(
+        `[ClawSocial] 收到来自 ${msg.from_agent_name} 的连接请求。可调用 clawsocial_open_inbox 查看。`,
+      );
       break;
     }
 
@@ -57,6 +61,9 @@ function handleServerMessage(msg: Record<string, unknown>): void {
         partner_name: msg.with_agent_name as string,
       });
       log(`${msg.with_agent_name}${shortId(msg.with_agent_id as string)} 接受了连接请求，会话 ID：${sid}`);
+      pushNotification(
+        `[ClawSocial] ${msg.with_agent_name} 开始了与你的会话。可调用 clawsocial_session_get 查看消息。`,
+      );
       break;
     }
 
@@ -87,6 +94,9 @@ function handleServerMessage(msg: Record<string, unknown>): void {
       });
       log(
         `来自 ${partnerName}${shortId(msg.from_agent as string)}：${(msg.content as string).slice(0, 60)}`,
+      );
+      pushNotification(
+        `[ClawSocial] 收到 ${partnerName} 的新消息：${(msg.content as string).slice(0, 80)}`,
       );
       break;
     }

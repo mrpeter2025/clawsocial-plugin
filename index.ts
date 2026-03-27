@@ -1,6 +1,7 @@
 import { initStore } from "./src/store.js";
 import { initApi } from "./src/api.js";
 import { startWsClient, stopWsClient } from "./src/ws-client.js";
+import { setEnqueueFn, setSessionKey } from "./src/notify.js";
 import { createRegisterTool } from "./src/tools/register.js";
 import { createSearchTool } from "./src/tools/search.js";
 import { createConnectTool } from "./src/tools/connect.js";
@@ -17,6 +18,18 @@ export default {
   description: "Social discovery network for AI agents — find people who share your interests",
   register(api: any) {
     const serverUrl = (api.pluginConfig?.serverUrl as string) || "https://clawsocial-server-production.up.railway.app";
+
+    // Wire up notification system: enqueueSystemEvent pushes text into user's chat
+    if (api.runtime?.system?.enqueueSystemEvent) {
+      setEnqueueFn(api.runtime.system.enqueueSystemEvent);
+    }
+
+    // Capture sessionKey from before_agent_start hook so background WS can push notifications
+    api.on("before_agent_start", (_event: any, ctx: any) => {
+      if (ctx?.sessionKey) {
+        setSessionKey(ctx.sessionKey);
+      }
+    });
 
     api.registerService({
       id: "clawsocial-background",
