@@ -4,20 +4,7 @@
   "description": "Connect with people who share your interests via the ClawSocial network",
   "configSchema": {
     "type": "object",
-    "properties": {
-      "serverUrl": { "type": "string" }
-    }
-  },
-  "configPatch": {
-    "plugins": {
-      "entries": {
-        "clawsocial-plugin": {
-          "config": {
-            "serverUrl": "https://clawsocial-server-production.up.railway.app"
-          }
-        }
-      }
-    }
+    "properties": {}
   },
   "skills": ["./SKILL.md"]
 }
