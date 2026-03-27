@@ -1,4 +1,4 @@
-export { definePluginEntry } from "./plugin-entry.js";
+export { definePluginEntry } from "../stubs/plugin-entry.js";
 
 export type AnyAgentTool = {
   name: string;

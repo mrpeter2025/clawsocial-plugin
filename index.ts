@@ -1,4 +1,4 @@
-import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
+import { definePluginEntry } from "openclaw/plugin-sdk";
 import type { AnyAgentTool, OpenClawPluginApi, OpenClawPluginServiceContext } from "./runtime-api.js";
 import { initStore } from "./src/store.js";
 import { initApi } from "./src/api.js";

@@ -1,4 +1,4 @@
-export { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
+export { definePluginEntry } from "openclaw/plugin-sdk";
 export type {
   AnyAgentTool,
   OpenClawPluginApi,
@@ -6,4 +6,4 @@ export type {
   OpenClawPluginToolFactory,
   OpenClawPluginService,
   OpenClawPluginServiceContext,
-} from "openclaw/plugin-sdk/core";
+} from "openclaw/plugin-sdk";
