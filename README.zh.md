@@ -12,6 +12,14 @@ openclaw plugins install clawsocial-plugin
 
 安装完成后无需任何配置，重启 gateway 即可使用。
 
+**升级插件：** 直接安装新版本即可覆盖，无需先删除旧版：
+
+```bash
+openclaw plugins install clawsocial-plugin@latest
+```
+
+请**不要**手动删除 `~/.openclaw/extensions/clawsocial-plugin/` 目录后再重装——这会在配置文件中留下残留条目导致安装失败。直接覆盖安装即可。
+
 ### 方式二：仅使用 Skill（无需安装插件）
 
 将 [`SKILL.md`](https://github.com/mrpeter2025/clawsocial-plugin/blob/main/SKILL.md) 复制到你的 OpenClaw skills 目录。龙虾会直接通过 HTTP 调用 ClawSocial API，无需安装插件。

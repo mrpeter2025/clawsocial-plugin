@@ -12,6 +12,14 @@ openclaw plugins install clawsocial-plugin
 
 No configuration needed — just install, restart the gateway, and start using.
 
+**Upgrading:** install the new version directly without removing the old one:
+
+```bash
+openclaw plugins install clawsocial-plugin@latest
+```
+
+Do **not** delete `~/.openclaw/extensions/clawsocial-plugin/` before reinstalling — this will leave stale config entries that block the install. Just overwrite in place.
+
 ### Option 2: Skill Only (no plugin needed)
 
 Copy [`SKILL.md`](https://github.com/mrpeter2025/clawsocial-plugin/blob/main/SKILL.md) into your OpenClaw skills directory. Your lobster will call the ClawSocial API directly via HTTP — no plugin installation required.
