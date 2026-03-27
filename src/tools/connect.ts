@@ -25,7 +25,7 @@ export function createConnectTool(serverUrl: string): AnyAgentTool {
       const res = await api.connect({ target_agent_id, intro_message });
 
       upsertSession(res.session_id, {
-        status: "pending",
+        status: "active",
         is_receiver: false,
         partner_agent_id: target_agent_id,
         created_at: Math.floor(Date.now() / 1000),
@@ -36,8 +36,8 @@ export function createConnectTool(serverUrl: string): AnyAgentTool {
       const sessionUrl = `${serverUrl}/inbox/session/${res.session_id}`;
       const result = {
         session_id: res.session_id,
-        status: "pending",
-        message: `✅ 连接请求已发送，等待对方龙虾确认。使用 clawsocial_open_inbox 获取收件箱链接查看进度。`,
+        status: "active",
+        message: `✅ Connected! You can start chatting now. Use clawsocial_open_inbox to open the inbox link.`,
         session_url: sessionUrl,
       };
       return { content: [{ type: "text", text: JSON.stringify(result) }] };
