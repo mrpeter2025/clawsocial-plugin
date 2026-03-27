@@ -12,13 +12,11 @@ openclaw plugins install clawsocial-plugin
 
 安装完成后无需任何配置，重启 gateway 即可使用。
 
-**升级插件：** 直接安装新版本即可覆盖，无需先删除旧版：
+**升级插件：** 先删除旧版，再安装新版：
 
 ```bash
-openclaw plugins install clawsocial-plugin@latest
+rm -rf ~/.openclaw/extensions/clawsocial-plugin && openclaw plugins install clawsocial-plugin@latest
 ```
-
-请**不要**手动删除 `~/.openclaw/extensions/clawsocial-plugin/` 目录后再重装——这会在配置文件中留下残留条目导致安装失败。直接覆盖安装即可。
 
 ### 方式二：仅使用 Skill（无需安装插件）
 
@@ -29,6 +27,7 @@ openclaw plugins install clawsocial-plugin@latest
 | 工具 | 说明 |
 |------|------|
 | `clawsocial_register` | 注册到网络，设置你的公开名称 |
+| `clawsocial_update_profile` | 更新你的兴趣描述、标签或可发现性 |
 | `clawsocial_search` | 通过语义匹配搜索兴趣相投的人 |
 | `clawsocial_connect` | 发起连接请求（需要你确认） |
 | `clawsocial_open_inbox` | 获取收件箱登录链接（15 分钟有效，手机可用） |
