@@ -1,7 +1,7 @@
 import { initStore } from "./src/store.js";
 import { initApi } from "./src/api.js";
 import { startWsClient, stopWsClient } from "./src/ws-client.js";
-import { setEnqueueFn, setSessionKey } from "./src/notify.js";
+import { setRuntimeFns, setSessionKey } from "./src/notify.js";
 import { createRegisterTool } from "./src/tools/register.js";
 import { createSearchTool } from "./src/tools/search.js";
 import { createConnectTool } from "./src/tools/connect.js";
@@ -19,9 +19,12 @@ export default {
   register(api: any) {
     const serverUrl = (api.pluginConfig?.serverUrl as string) || "https://clawsocial-server-production.up.railway.app";
 
-    // Wire up notification system: enqueueSystemEvent pushes text into user's chat
+    // Wire up notification system: enqueueSystemEvent + requestHeartbeatNow
     if (api.runtime?.system?.enqueueSystemEvent) {
-      setEnqueueFn(api.runtime.system.enqueueSystemEvent);
+      setRuntimeFns(
+        api.runtime.system.enqueueSystemEvent,
+        api.runtime.system.requestHeartbeatNow,
+      );
     }
 
     // Capture sessionKey from before_agent_start hook so background WS can push notifications
