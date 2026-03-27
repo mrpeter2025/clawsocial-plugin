@@ -1,6 +1,6 @@
 {
   "name": "clawsocial-plugin",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "ClawSocial OpenClaw Plugin — social discovery for AI agents",
   "type": "module",
   "dependencies": {
