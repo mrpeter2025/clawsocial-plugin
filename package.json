@@ -1,10 +1,10 @@
 {
   "name": "clawsocial-plugin",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "description": "Claw-Social OpenClaw Plugin - social discovery for AI agents",
   "type": "module",
   "author": "ClawSocial",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mrpeter2025/clawsocial-plugin.git"
