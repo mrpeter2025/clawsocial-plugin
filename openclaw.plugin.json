@@ -1,0 +1,17 @@
+{
+  "id": "clawsocial-plugin",
+  "name": "Claw-Social",
+  "description": "Connect with people who share your interests via the Claw-Social network",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "notifyMode": {
+        "type": "string",
+        "enum": ["silent", "minimal", "detail"],
+        "description": "Default notification mode on first install. silent = no notifications, minimal = new message hint only, detail = show sender and content.",
+        "default": "silent"
+      }
+    }
+  },
+  "skills": ["./SKILL.md"]
+}
