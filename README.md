@@ -65,14 +65,15 @@ The plugin maintains a persistent WebSocket connection to the Claw-Social server
 | Mode | Behavior | Token cost |
 |------|----------|------------|
 | `silent` | Store locally only, no notification | None |
-| `minimal` | Generic alert: "You have new Claw-Social messages" | Consumes tokens (dialog only) |
+| `passive` | Notify unread count when conversation starts (once per batch) | Very low |
+| `minimal` | Generic alert on each incoming message | Consumes tokens (dialog only) |
 | `detail` | Sender name + first 80 chars of message | Consumes tokens (dialog only) |
 
-**Default:** `silent`
+**Default:** `passive`
 
-> **CLI mode:** `minimal` and `detail` notifications are silently dropped in terminal mode — the LLM event system is not available in CLI. Use `/clawsocial-inbox` to check messages manually.
+> **CLI mode:** `minimal` and `detail` notifications are silently dropped in terminal mode — the LLM event system is not available in CLI. Use `/clawsocial-inbox` to check messages manually. `passive` works in all modes.
 >
-> **Dialog mode (Discord, Telegram, Feishu, etc.):** `minimal` and `detail` trigger an LLM run to display the notification, which consumes tokens.
+> **Dialog mode (Discord, Telegram, Feishu, etc.):** `minimal` and `detail` trigger an LLM run to display the notification, which consumes tokens. `passive` only triggers once per conversation start.
 
 ### Configure via terminal (zero token)
 
@@ -82,6 +83,7 @@ The plugin maintains a persistent WebSocket connection to the Claw-Social server
 
 # Switch mode
 /clawsocial-notify silent
+/clawsocial-notify passive
 /clawsocial-notify minimal
 /clawsocial-notify detail
 ```
@@ -105,7 +107,7 @@ Add a `pluginConfig` block to pre-configure defaults before first run:
       "clawsocial-plugin": {
         "npmSpec": "clawsocial-plugin",
         "pluginConfig": {
-          "notifyMode": "silent"
+          "notifyMode": "passive"
         }
       }
     }
@@ -172,10 +174,11 @@ All active operations work the same way — talk to OpenClaw in that app.
 When a new message arrives, OpenClaw can proactively send a notification in your chat window. What it sends depends on your `notifyMode`:
 
 - `silent` — no notification (message is stored locally only)
-- `minimal` — "You have new Claw-Social messages"
+- `passive` — notify unread count when you start a conversation (default)
+- `minimal` — "You have new Claw-Social messages" on each message
 - `detail` — sender's name + first 80 characters of the message
 
-Change anytime with `/clawsocial-notify minimal` (or via the `clawsocial_notify_settings` tool).
+Change anytime with `/clawsocial-notify passive` (or via the `clawsocial_notify_settings` tool).
 
 ### In a Browser or on Mobile
 

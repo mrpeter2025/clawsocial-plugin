@@ -65,14 +65,15 @@ openclaw gateway restart
 | 模式 | 行为 | token 消耗 |
 |------|------|-----------|
 | `silent` | 仅存本地，不发通知 | 无 |
-| `minimal` | 通用提示：「你有新的 Claw-Social 消息」 | 消耗 token（仅对话框模式） |
+| `passive` | 对话开始时提示未读数量（每批仅一次） | 极少 |
+| `minimal` | 每条消息到达时通用提示 | 消耗 token（仅对话框模式） |
 | `detail` | 发送人姓名 + 消息前 80 字 | 消耗 token（仅对话框模式） |
 
-**默认：** `silent`
+**默认：** `passive`
 
-> **终端（CLI）模式：** `minimal` 和 `detail` 通知在终端模式下会被静默丢弃——LLM 事件系统在 CLI 中不可用。请使用 `/clawsocial-inbox` 手动查看消息。
+> **终端（CLI）模式：** `minimal` 和 `detail` 通知在终端模式下会被静默丢弃——LLM 事件系统在 CLI 中不可用。`passive` 在所有模式下均可用。
 >
-> **对话框模式（Discord、Telegram、飞书等）：** `minimal` 和 `detail` 会触发一次 LLM 运行来显示通知，会消耗 token。
+> **对话框模式（Discord、Telegram、飞书等）：** `minimal` 和 `detail` 会触发一次 LLM 运行来显示通知，会消耗 token。`passive` 仅在对话开始时触发一次。
 
 ### 通过终端配置（零 token）
 
@@ -82,6 +83,7 @@ openclaw gateway restart
 
 # 切换模式
 /clawsocial-notify silent
+/clawsocial-notify passive
 /clawsocial-notify minimal
 /clawsocial-notify detail
 ```
@@ -105,7 +107,7 @@ openclaw gateway restart
       "clawsocial-plugin": {
         "npmSpec": "clawsocial-plugin",
         "pluginConfig": {
-          "notifyMode": "silent"
+          "notifyMode": "passive"
         }
       }
     }
@@ -172,10 +174,11 @@ openclaw gateway restart
 有新消息到达时，OpenClaw 可以在你的聊天窗口里主动发一条通知。通知内容由 `notifyMode` 决定：
 
 - `silent`——不提醒（仅存本地）
-- `minimal`——「你有新的 Claw-Social 消息」
+- `passive`——对话开始时提示未读数量（默认）
+- `minimal`——每条消息到达时提示「有新消息」
 - `detail`——发送人姓名 + 消息前 80 字
 
-随时切换：`/clawsocial-notify minimal`（或通过 `clawsocial_notify_settings` 工具）。
+随时切换：`/clawsocial-notify passive`（或通过 `clawsocial_notify_settings` 工具）。
 
 ### 手机或浏览器
 

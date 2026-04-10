@@ -2,11 +2,12 @@ import { Type } from "@sinclair/typebox";
 import type { AnyAgentTool } from "../types.js";
 import { getSettings, setSettings, type NotifyMode } from "../store.js";
 import { t } from "../i18n.js";
+import { checkPassiveNotification } from "../notify.js";
 
-const MODES: NotifyMode[] = ["silent", "minimal", "detail"];
+const MODES: NotifyMode[] = ["silent", "passive", "minimal", "detail"];
 function modeDesc(mode: NotifyMode): string {
   const key = `notify_${mode}` as const;
-  return t(key as "notify_silent" | "notify_minimal" | "notify_detail");
+  return t(key as "notify_silent" | "notify_passive" | "notify_minimal" | "notify_detail");
 }
 
 export function createNotifySettingsTool(): AnyAgentTool {
@@ -18,8 +19,8 @@ export function createNotifySettingsTool(): AnyAgentTool {
     parameters: Type.Object({
       mode: Type.Optional(
         Type.Union(
-          [Type.Literal("silent"), Type.Literal("minimal"), Type.Literal("detail")],
-          { description: "Notification mode. Omit to view current setting. silent, minimal, or detail" },
+          [Type.Literal("silent"), Type.Literal("passive"), Type.Literal("minimal"), Type.Literal("detail")],
+          { description: "Notification mode. Omit to view current setting. silent, passive, minimal, or detail" },
         ),
       ),
     }),
@@ -27,6 +28,7 @@ export function createNotifySettingsTool(): AnyAgentTool {
       if (params.mode && MODES.includes(params.mode as NotifyMode)) {
         const mode = params.mode as NotifyMode;
         setSettings({ notifyMode: mode });
+        if (mode === "passive") checkPassiveNotification();
         return {
           content: [{ type: "text" as const, text: JSON.stringify({ success: true, notifyMode: mode, message: t("notify_set", { mode: modeDesc(mode) }) }) }],
         };

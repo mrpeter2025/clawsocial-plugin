@@ -69,10 +69,10 @@ type SessionsMap = Record<string, LocalSession>;
 
 // ── Settings ────────────────────────────────────────────────────────
 
-export type NotifyMode = "silent" | "minimal" | "detail";
-export type Settings = { notifyMode: NotifyMode };
+export type NotifyMode = "silent" | "passive" | "minimal" | "detail";
+export type Settings = { notifyMode: NotifyMode; lastNotifiedUnreadTotal?: number };
 
-const DEFAULT_SETTINGS: Settings = { notifyMode: "silent" };
+const DEFAULT_SETTINGS: Settings = { notifyMode: "passive" };
 
 function settingsFile(): string {
   return path.join(getDataDir(), "settings.json");
@@ -161,11 +161,18 @@ export function addMessage(sessionId: string, msg: LocalMessage): void {
   writeSessions(sessions);
 }
 
+export function getTotalUnread(): number {
+  const sessions = getSessions();
+  return Object.values(sessions).reduce((sum, s) => sum + (s.unread ?? 0), 0);
+}
+
 export function markRead(sessionId: string): void {
   const sessions = getSessions();
   if (sessions[sessionId]) {
     sessions[sessionId].unread = 0;
     writeSessions(sessions);
+    // Update lastNotifiedUnreadTotal so passive mode can detect new messages after reading
+    setSettings({ lastNotifiedUnreadTotal: getTotalUnread() });
   }
 }
 

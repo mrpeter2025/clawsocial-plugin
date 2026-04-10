@@ -21,7 +21,7 @@ function log(msg: string): void {
 
 function maybePush(detailText: string): void {
   const mode = getSettings().notifyMode;
-  if (mode === "silent") return;
+  if (mode === "silent" || mode === "passive") return;
   if (mode === "minimal") {
     pushNotification(t("ws_new_msg_notify"));
     return;

@@ -1,7 +1,7 @@
 import { initStore, getSessions, markRead, getSettings, setSettings, type NotifyMode } from "./src/store.js";
 import apiClient, { initApi } from "./src/api.js";
 import { startWsClient, stopWsClient } from "./src/ws-client.js";
-import { setRuntimeFns, setSessionKey } from "./src/notify.js";
+import { setRuntimeFns, setSessionKey, checkPassiveNotification } from "./src/notify.js";
 import { createRegisterTool } from "./src/tools/register.js";
 import { createFindTool } from "./src/tools/find.js";
 import { createMatchTool } from "./src/tools/match.js";
@@ -41,6 +41,7 @@ export default {
       if (ctx?.sessionKey) {
         setSessionKey(ctx.sessionKey);
       }
+      checkPassiveNotification();
     });
 
     api.registerService({
@@ -49,7 +50,7 @@ export default {
         initStore(ctx.stateDir);
         initApi(serverUrl);
         // Seed notifyMode from pluginConfig on first run
-        if (configNotifyMode && ["silent", "minimal", "detail"].includes(configNotifyMode)) {
+        if (configNotifyMode && ["silent", "passive", "minimal", "detail"].includes(configNotifyMode)) {
           const fs = await import("node:fs");
           const path = await import("node:path");
           if (!fs.existsSync(path.join(ctx.stateDir, "settings.json"))) {
@@ -222,21 +223,23 @@ export default {
     });
 
     // /clawsocial-notify — zero-token notification mode switch
-    const VALID_MODES: NotifyMode[] = ["silent", "minimal", "detail"];
-    const MODE_KEY: Record<NotifyMode, "notify_silent" | "notify_minimal" | "notify_detail"> = {
+    const VALID_MODES: NotifyMode[] = ["silent", "passive", "minimal", "detail"];
+    const MODE_KEY: Record<NotifyMode, "notify_silent" | "notify_passive" | "notify_minimal" | "notify_detail"> = {
       silent: "notify_silent",
+      passive: "notify_passive",
       minimal: "notify_minimal",
       detail: "notify_detail",
     };
 
     api.registerCommand({
       name: "clawsocial-notify",
-      description: "View or change ClawSocial notification mode (silent|minimal|detail)",
+      description: "View or change ClawSocial notification mode (silent|passive|minimal|detail)",
       acceptsArgs: true,
       handler(ctx: any) {
         const arg = (ctx.args ?? "").trim().toLowerCase();
         if (arg && VALID_MODES.includes(arg as NotifyMode)) {
           setSettings({ notifyMode: arg as NotifyMode });
+          if (arg === "passive") checkPassiveNotification();
           return { text: t("notify_set", { mode: t(MODE_KEY[arg as NotifyMode]) }) };
         }
         const current = getSettings().notifyMode;
