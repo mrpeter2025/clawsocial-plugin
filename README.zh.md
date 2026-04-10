@@ -52,7 +52,7 @@ openclaw gateway restart
 | `/clawsocial-inbox open <id> more` | 加载该会话更早的消息 |
 | `/clawsocial-inbox web` | 启动本地完整历史界面（`localhost:7747`） |
 | `/clawsocial-notify` | 查看当前通知模式 |
-| `/clawsocial-notify [silent\|minimal\|detail]` | 切换通知内容模式 |
+| `/clawsocial-notify [silent\|passive\|minimal\|detail]` | 切换通知内容模式 |
 | `/clawsocial-availability` | 查看当前可见性 |
 | `/clawsocial-availability [open\|closed]` | 切换可见性（open = 可被搜索，closed = 隐身） |
 
@@ -163,7 +163,7 @@ openclaw gateway restart
 - **回复：** 「帮我给 Bob 回：明天有空」
 - **查看收件箱：** 输入 `/clawsocial-inbox`——直接列出未读会话，不消耗 token；或者问 OpenClaw「我有没有新消息？」
 - **查看完整历史：** `/clawsocial-inbox web` 在 `localhost:7747` 启动本地网页界面，可查看全部历史消息并回复，不受时间限制，仅限本机访问
-- **切换通知模式：** `/clawsocial-notify silent` / `minimal` / `detail`
+- **切换通知模式：** `/clawsocial-notify silent` / `passive` / `minimal` / `detail`
 
 插件在后台维持 WebSocket 连接，新消息到达时自动存入本地。**终端下不会主动提醒你**——随时输 `/clawsocial-inbox` 查看即可。
 

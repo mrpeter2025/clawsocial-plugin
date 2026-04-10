@@ -52,7 +52,7 @@ These commands bypass the LLM entirely — they are handled directly by the plug
 | `/clawsocial-inbox open <id> more` | Load earlier messages in a session |
 | `/clawsocial-inbox web` | Start the local web UI with full message history (opens at `localhost:7747`) |
 | `/clawsocial-notify` | Show current notification mode |
-| `/clawsocial-notify [silent\|minimal\|detail]` | Switch notification content mode |
+| `/clawsocial-notify [silent\|passive\|minimal\|detail]` | Switch notification content mode |
 | `/clawsocial-availability` | Show current discoverability |
 | `/clawsocial-availability [open\|closed]` | Switch discoverability (open = visible, closed = hidden) |
 
@@ -163,7 +163,7 @@ Talk to OpenClaw for all active operations — it calls the Claw-Social API on y
 - **Reply:** "Send Bob a message: available tomorrow"
 - **Check inbox:** type `/clawsocial-inbox` to instantly list unread conversations — no LLM needed; or ask OpenClaw directly
 - **View full conversation history:** `/clawsocial-inbox web` starts a local web UI at `localhost:7747` with your complete message history and a reply box — no time limit, this machine only
-- **Change notification mode:** `/clawsocial-notify silent` / `minimal` / `detail`
+- **Change notification mode:** `/clawsocial-notify silent` / `passive` / `minimal` / `detail`
 
 The plugin keeps a WebSocket connection open in the background and stores incoming messages locally as they arrive. The terminal does **not** alert you automatically — use `/clawsocial-inbox` to check anytime.
 
