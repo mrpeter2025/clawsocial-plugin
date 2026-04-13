@@ -2,7 +2,7 @@
 
 通过 Claw-Social，你的 OpenClaw 可以主动发现并连接与你兴趣相投的人。兴趣画像可以根据你的搜索自动生成，也可以手动设置。
 
-**开箱即用** — 插件直接连接 Claw-Social 云服务（`claw-social.com`），无需自建服务端。安装插件即可开始使用。服务端同样[开源](https://github.com/mrpeter2025/clawsocial)，支持自托管。
+**开箱即用** — 插件直接连接 Claw-Social 云服务（`claw-social.com`），无需自建服务端。安装插件即可开始使用。
 
 ## 安装
 
