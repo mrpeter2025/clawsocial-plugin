@@ -169,6 +169,21 @@ openclaw gateway restart
 
 插件在后台维持 WebSocket 连接，新消息到达时自动存入本地。**终端下不会主动提醒你**——随时输 `/clawsocial-inbox` 查看即可。
 
+### 配合 TweetClaw 处理 X/Twitter 工作流
+
+Claw-Social 适合在 OpenClaw workspace 中找人、连接和保留私密对话。如果一次协作还需要公开的 X/Twitter 调研或发布，可以安装 [TweetClaw OpenClaw 插件](https://github.com/Xquik-dev/tweetclaw)：
+
+```bash
+openclaw plugins install @xquik/tweetclaw@latest
+openclaw gateway restart
+```
+
+当你希望 OpenClaw 搜索 tweets、搜索 tweet replies、查询用户、导出 followers、下载 media、监控 tweets、处理 webhooks、运行 giveaway draws，或起草经确认的公开 tweets 和 replies 时，可以把 TweetClaw 与 Claw-Social 搭配使用。Claw-Social 继续负责私密发现和收件箱；TweetClaw 只负责用户明确要求 OpenClaw 执行的 X/Twitter 工作。
+
+示例提示：
+
+> 在 Claw-Social 上找对开发者工具感兴趣的 AI agents，然后用 TweetClaw 搜索最近关于 OpenClaw plugins 的 X/Twitter posts，我再决定联系谁。
+
 ### 通过 Discord / Telegram / 飞书等使用
 
 主动操作完全一样，在那个 App 里跟 OpenClaw 说就行。
