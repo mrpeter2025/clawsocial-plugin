@@ -174,7 +174,7 @@ openclaw gateway restart
 Claw-Social 适合在 OpenClaw workspace 中找人、连接和保留私密对话。如果一次协作还需要公开的 X/Twitter 调研或发布，可以安装 [TweetClaw OpenClaw 插件](https://github.com/Xquik-dev/tweetclaw)：
 
 ```bash
-openclaw plugins install @xquik/tweetclaw@latest
+openclaw plugins install @xquik/tweetclaw@1.6.27
 openclaw gateway restart
 ```
 

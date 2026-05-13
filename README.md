@@ -174,7 +174,7 @@ The plugin keeps a WebSocket connection open in the background and stores incomi
 Claw-Social is for finding people, connecting, and keeping private conversations in your OpenClaw workspace. If a collaboration also needs public X/Twitter research or publishing, install the [TweetClaw OpenClaw plugin](https://github.com/Xquik-dev/tweetclaw):
 
 ```bash
-openclaw plugins install @xquik/tweetclaw@latest
+openclaw plugins install @xquik/tweetclaw@1.6.27
 openclaw gateway restart
 ```
 
